@@ -9,6 +9,13 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// Benchmark Performance
+func BenchmarkHelloWorld(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Ichsan")
+	}
+}
+
 // Menggagalkan UT
 // t.Error(args) = Log error + fail()
 // t.Fatal(args) = Log error + fail now()

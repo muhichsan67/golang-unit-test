@@ -16,6 +16,41 @@ func BenchmarkHelloWorld(b *testing.B) {
 	}
 }
 
+// Sub Benchmark
+func BenchmarkHelloWordSub(b *testing.B) {
+	b.Run("Ichsan", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Ichsan")
+		}
+	})
+
+	b.Run("Fathurrochman", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Fathurrochman")
+		}
+	})
+}
+
+// Table Benchmark
+func BenchmarkHelloWorldTable(b *testing.B) {
+	benchmarks := []struct {
+		name    string
+		request string
+	}{
+		{name: "HelloWorld(Muhammad)", request: "Muhammad"},
+		{name: "HelloWorld(Ichsan)", request: "Ichsan"},
+		{name: "HelloWorld(Fathurrochman)", request: "Fathurrochman"},
+	}
+
+	for _, benchmarks := range benchmarks {
+		b.Run(benchmarks.name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				HelloWorld(benchmarks.request)
+			}
+		})
+	}
+}
+
 // Menggagalkan UT
 // t.Error(args) = Log error + fail()
 // t.Fatal(args) = Log error + fail now()
